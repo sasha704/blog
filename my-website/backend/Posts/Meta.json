@@ -1,0 +1,9 @@
+{
+    "posts":{
+        "post1":{
+            "title": "Test Title",
+            "date": "13/06/2025",
+            "filename": "Test"
+        }    
+    }
+}
