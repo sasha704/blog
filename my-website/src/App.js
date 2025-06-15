@@ -1,78 +1,27 @@
 import './App.css';
-import NavBar from './NavBar';
-import AddBlock from './AddBlock'
-import PostSummary from './PostSummary'
-import {useEffect, useState} from 'react'
-
-let summariesShown = 5
-const webUrl = 'http://127.0.0.1:8000/'
+import Home from './pages/Home'
+import Layout from './pages/Layout';
+import NoPage from './pages/NoPage'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
-  const [summaryMin, setSummaryMin] = useState("1")
-
-  // Update summaries every time the summary page changes
-  useEffect(() => {
-      console.log('getting summaries')
-
-      // Add new summaries
-      fetch(webUrl+'summaries'+summaryMin+'-'+(summaryMin+summariesShown), {method: "GET", mode: "cors"}).then(response => {
-        if (response.ok) {
-          console.log('data')
-          return response.json();
-        }
-      }).then(data =>{
-         // Remove all existing summaries
-        let main = document.querySelector("main");
-        let summary = main.lastElementChild;
-
-        while (summary){
-          main.removeChild(summary)
-          summary = main.lastElementChild;
-        }
-
-        console.log(data)
-        let summaries = data.summaries;
-
-        summaries.forEach((post) => {
-          let newDiv = document.createElement("div");
-
-          // Date
-          let pDate = document.createElement("p");
-          const pDateText = document.createTextNode(post.date)
-          pDate.className = "SummaryDate"
-          pDate.appendChild(pDateText)
-          newDiv.appendChild(pDate)
-
-          // Title
-          let pTitle = document.createElement("a");
-          const pTitleText = document.createTextNode(post.title)
-          pTitle.className = "SummaryTitle"
-          pTitle.href = webUrl + "getFile/" + post.filename
-          pTitle.appendChild(pTitleText)
-          newDiv.appendChild(pTitle)
-          
-          // Parent
-          newDiv.className = "Summary"
-          main.appendChild(newDiv)
-
-        })
-        
-      })
-
-  }, [summaryMin])
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <NavBar></NavBar>
-        <title>Alex's Cool Website</title>
-        <h1>Alex's Cool Website</h1>
-      </header>
-      <main></main>
-      <AddBlock></AddBlock>
-    </div>
+  <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+/*--rose-ebony: #563d39ff;
+--satin-sheen-gold: #cd9f3cff;
+--rust: #b54403ff;
+--dark-moss-green: #496515ff;
+--pakistan-green: #183d00ff;*/
 
 export default App;
