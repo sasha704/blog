@@ -15,15 +15,6 @@ function App() {
   useEffect(() => {
       console.log('getting summaries')
 
-      // Remove all existing summaries
-      let main = document.querySelector("main");
-      let summary = main.lastElementChild;
-
-      while (summary){
-        main.removeChild(summary)
-        summary = main.lastElementChild;
-      }
-
       // Add new summaries
       fetch(webUrl+'summaries'+summaryMin+'-'+(summaryMin+summariesShown), {method: "GET", mode: "cors"}).then(response => {
         if (response.ok) {
@@ -31,13 +22,40 @@ function App() {
           return response.json();
         }
       }).then(data =>{
+         // Remove all existing summaries
+        let main = document.querySelector("main");
+        let summary = main.lastElementChild;
+
+        while (summary){
+          main.removeChild(summary)
+          summary = main.lastElementChild;
+        }
+
         console.log(data)
         let summaries = data.summaries;
 
         summaries.forEach((post) => {
-          let newSummary = PostSummary(post.title, post.date);
+          let newDiv = document.createElement("div");
 
-          main.appendChild(newSummary)
+          // Date
+          let pDate = document.createElement("p");
+          const pDateText = document.createTextNode(post.date)
+          pDate.className = "SummaryDate"
+          pDate.appendChild(pDateText)
+          newDiv.appendChild(pDate)
+
+          // Title
+          let pTitle = document.createElement("a");
+          const pTitleText = document.createTextNode(post.title)
+          pTitle.className = "SummaryTitle"
+          pTitle.href = webUrl + "getFile/" + post.filename
+          pTitle.appendChild(pTitleText)
+          newDiv.appendChild(pTitle)
+          
+          // Parent
+          newDiv.className = "Summary"
+          main.appendChild(newDiv)
+
         })
         
       })

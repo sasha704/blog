@@ -7,14 +7,8 @@
 }
 
 main {
-  background-color: #CD9F3C;
-  border-right-style: solid;
-  border-radius: 20;
-  border-left-style: solid;
-  border-color: #563D39;
   width:80%;
   height:100%;
-  float: right;
 }
 
 button {
@@ -38,4 +32,30 @@ h1 {
   padding: 10px;
   background-color: #251A18;
   height: 900px;
+}
+
+.Summary{
+  background-color: #CD9F3C;
+  border-right-style: solid;
+  border-radius: 20;
+  border-left-style: solid;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: #996a06;
+  width: 80%;
+  float: left;
+  margin-left: 9%;
+  margin-top: 10px;
+  text-align: center;
+
+}
+
+.SummaryTitle {
+  text-align: center;
+  font-size: 40px;
+}
+
+.SummaryDate{
+  text-align: right;
+  padding-right: 30px;
 }
