@@ -5,7 +5,7 @@ import {useEffect, useState} from 'react'
 let summariesShown = 5
 const webUrl = 'http://127.0.0.1:8000/'
 
-function Home() {
+const Home = () => {
 
   const [summaryMin, setSummaryMin] = useState("1")
 
@@ -46,7 +46,7 @@ function Home() {
           let pTitle = document.createElement("a");
           const pTitleText = document.createTextNode(post.title)
           pTitle.className = "SummaryTitle"
-          pTitle.href = webUrl + "getFile/" + post.filename
+          pTitle.href = "/post/" +post.filename
           pTitle.appendChild(pTitleText)
           newDiv.appendChild(pTitle)
           

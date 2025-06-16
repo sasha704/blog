@@ -2,6 +2,7 @@ import './App.css';
 import Home from './pages/Home'
 import Layout from './pages/Layout';
 import NoPage from './pages/NoPage'
+import Reader from './pages/Reader'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/post/:filename" element={<Reader />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

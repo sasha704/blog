@@ -59,3 +59,11 @@ h1 {
   text-align: right;
   padding-right: 30px;
 }
+
+.PostReader{
+  background-color: #d6ae57;
+  width: 98%;
+  float: left;
+  margin-left: 1%;
+  margin-top: 10px;
+}

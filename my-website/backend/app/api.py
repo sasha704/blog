@@ -20,10 +20,10 @@ def load_summaries():
     
     for post in posts:
         # Convert summary json to summary_type class, then store in list
-        post = Summary_type(title=posts[post]["title"], date=posts[post]["date"], filename=posts[post]["filename"])
+        # post = Summary_type(title=posts[post]["title"], date=posts[post]["date"], filename=post)
         summaries.append(post)
 
-    return summaries
+    return posts
 
 global summaries
 summaries = load_summaries()
@@ -55,13 +55,12 @@ postFilePath = "../Posts/Body/"
 
 # Get requested summaries
 @app.get("/summaries{start}-{end}")
-async def getSummaries(start,end):
-    print('hi')
-    print(summaries)
+async def getSummaries(start,end) -> dict:
+    print(type(get_summaries(start,end)))
     return{"summaries": get_summaries(start,end)}
 
 # Return requested summaries as list
-def get_summaries(start, end):
+def get_summaries(start, end) -> list[dict]:
     global summaries
     
     # Don't return more summaries than exist 
@@ -76,7 +75,7 @@ def get_summaries(start, end):
 
     if (end == 0):
         
-        return summaries
+        return [summaries]
     else:
         print(summaries)
         return summaries[start:end]
@@ -88,16 +87,21 @@ async def getTotalSummaries():
 
 # *************** POSTS ********************
 
-@app.get("/post{post}")
-async def getPostBody(post):
-    meta = summaries[post]
-    body = getPost(meta['filename'])
-    return {"title": meta['title'], "date": meta['date'], "body": body}
+@app.get("/post/{postName}")
+async def getPostBody(postName) -> dict:
+    postMeta = summaries[postName]
+    body = getPostBody(postMeta['filename'])
+
+    print(postMeta['title'])
+    print(body)
+
+    return {"title": postMeta['title'], "date": postMeta['date'], "body": body}
+    
 
 # Return body of post
-def getPost(post):
+def getPostBody(post):
 
-    file = open("../Posts/Body/"+post+".txt")
+    file = open("Posts/Body/"+post+".txt")
     body = file.read()
     file.close()
 
