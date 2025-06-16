@@ -20,6 +20,7 @@ const Home = () => {
           return response.json();
         }
       }).then(data =>{
+        console.log(data);
          // Remove all existing summaries
         let main = document.querySelector("main");
         let summary = main.lastElementChild;
@@ -31,8 +32,18 @@ const Home = () => {
 
         console.log(data)
         let summaries = data.summaries;
+        summaries = summaries[0]
 
-        summaries.forEach((post) => {
+        // Handle list of 1
+        if (! (Array.isArray(summaries))) {
+          summaries = [summaries]
+        }
+
+        summaries.forEach((PostObject) => {
+          let post = PostObject[Object.keys(PostObject)[0]]
+        
+          console.log(post)
+          console.log(post.post1)
           let newDiv = document.createElement("div");
 
           // Date
@@ -53,7 +64,7 @@ const Home = () => {
           // Parent
           newDiv.className = "Summary"
           main.appendChild(newDiv)
-
+          
         })
         
       })
