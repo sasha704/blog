@@ -57,7 +57,7 @@ const Home = () => {
           let pTitle = document.createElement("a");
           const pTitleText = document.createTextNode(post.title)
           pTitle.className = "SummaryTitle"
-          pTitle.href = "/post/" +post.filename
+          pTitle.href = "/post/" +Object.keys(PostObject)[0]
           pTitle.appendChild(pTitleText)
           newDiv.appendChild(pTitle)
           

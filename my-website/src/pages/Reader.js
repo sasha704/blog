@@ -19,7 +19,7 @@ function Reader(props) {
         }
       }).then(data =>{
         // Remove all existing posts
-        let main = document.querySelector("postreader");
+        let main = document.querySelector("main");
         let post = main.lastElementChild;
 
         while (post){
@@ -45,7 +45,7 @@ function Reader(props) {
         <title>Alex's Cool Website</title>
         <h1>Alex's Cool Website</h1>
       </header>
-      <postreader className="PostReader"></postreader>
+      <main className="PostReader"></main>
     </div>;
 };
 
