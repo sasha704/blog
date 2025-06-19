@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/post/:filename" element={<Reader />} />
+          <Route path="/post/:filename/:title" element={<Reader />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

@@ -21,7 +21,7 @@ def load_summaries():
     for post in posts:
         # Convert summary json to summary_type class, then store in list
         # post = Summary_type(title=posts[post]["title"], date=posts[post]["date"], filename=post)
-        
+
         summaries.append(post)
 
     return posts
@@ -57,7 +57,6 @@ postFilePath = "../Posts/Body/"
 # Get requested summaries
 @app.get("/summaries{start}-{end}")
 async def getSummaries(start,end) -> dict:
-    print(type(get_summaries(start,end)))
     return{"summaries": get_summaries(start,end)}
 
 # Return requested summaries as list
@@ -78,7 +77,6 @@ def get_summaries(start, end) -> list[dict]:
         
         return [summaries]
     else:
-        print(summaries)
         return summaries[start:end]
 
 # Get total number of summaries
@@ -90,12 +88,9 @@ async def getTotalSummaries():
 
 @app.get("/post/{postName}")
 async def getPostBody(postName) -> dict:
-    print(summaries)
+
     postMeta = summaries[postName]
     body = getPostBody(postMeta['filename'])
-
-    print(postMeta['title'])
-    print(body)
 
     return {"title": postMeta['title'], "date": postMeta['date'], "body": body}
     
@@ -103,7 +98,7 @@ async def getPostBody(postName) -> dict:
 # Return body of post
 def getPostBody(post):
 
-    file = open("Posts/Body/"+post+".txt")
+    file = open("Posts/Body/"+post+".md")
     body = file.read()
     file.close()
 

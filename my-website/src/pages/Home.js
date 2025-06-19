@@ -16,21 +16,18 @@ const Home = () => {
       // Add new summaries
       fetch(webUrl+'summaries'+summaryMin+'-'+(summaryMin+summariesShown), {method: "GET", mode: "cors"}).then(response => {
         if (response.ok) {
-          console.log('data')
           return response.json();
         }
       }).then(data =>{
-        console.log(data);
          // Remove all existing summaries
-        let main = document.querySelector("main");
-        let summary = main.lastElementChild;
+        let main = document.getElementsByTagName("main").item(0);
+        let summary = main?.lastElementChild;
 
         while (summary){
           main.removeChild(summary)
           summary = main.lastElementChild;
         }
 
-        console.log(data)
         let summaries = data.summaries;
         summaries = summaries[0]
 
@@ -41,9 +38,6 @@ const Home = () => {
 
         summaries.forEach((PostObject) => {
           let post = PostObject[Object.keys(PostObject)[0]]
-        
-          console.log(post)
-          console.log(post.post1)
           let newDiv = document.createElement("div");
 
           // Date
@@ -57,7 +51,7 @@ const Home = () => {
           let pTitle = document.createElement("a");
           const pTitleText = document.createTextNode(post.title)
           pTitle.className = "SummaryTitle"
-          pTitle.href = "/post/" +Object.keys(PostObject)[0]
+          pTitle.href = "/post/" +Object.keys(PostObject)[0]+"/"+post.title
           pTitle.appendChild(pTitleText)
           newDiv.appendChild(pTitle)
           
@@ -74,11 +68,13 @@ const Home = () => {
   return (
     <div className="Home">
       <header className="home-header">
-        <title>Alex's Cool Website</title>
-        <h1>Alex's Cool Website</h1>
+        <title>House Museum</title>
+        <h1>The House Museum</h1>
       </header>
-      <main></main>
-      <AddBlock></AddBlock>
+      <div class="grid">
+        <main></main>
+        <AddBlock></AddBlock>
+      </div>
     </div>
   );
 }

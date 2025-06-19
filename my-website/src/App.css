@@ -1,13 +1,13 @@
 .NavBar {
   list-style-type: none;
   margin: 0px;
-  padding: 0;
+  padding: 0px;
+  height: 50px;
   overflow: hidden;
-  background-color: #183d00ff;
+  background-color: #e2b502;
 }
 
 main {
-  width:80%;
   height:100%;
 }
 
@@ -16,43 +16,52 @@ button {
 }
 
 body {
-  background-color: #563D39;
+  background-color: #5b6445;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto 280px;
 }
 
 h1 {
   text-align: center;
-  background-color: #496515ff;
+  color:antiquewhite;
+  background-color: #2d221e;
   font-size: 40px;
-  margin: 0px
+  font-weight: bold;
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .AddBlock {
-  float: right;
-  width: 20%;
-  padding: 10px;
-  background-color: #251A18;
-  height: 900px;
+  max-width: 260px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #2d221e;
+  height:100%;
 }
 
 .Summary{
-  background-color: #CD9F3C;
+  background-color: #e2b502;
   border-right-style: solid;
-  border-radius: 20;
+  border-width: 1cap;
   border-left-style: solid;
   border-top-style: solid;
   border-bottom-style: solid;
-  border-color: #996a06;
-  width: 80%;
-  float: left;
-  margin-left: 9%;
+  border-color: #313826;
   margin-top: 10px;
   text-align: center;
-
+  width: 90%;
+  margin-left: 4%;
 }
 
 .SummaryTitle {
   text-align: center;
   font-size: 40px;
+  font-weight: bold;
 }
 
 .SummaryDate{
@@ -65,5 +74,11 @@ h1 {
   width: 98%;
   float: left;
   margin-left: 1%;
+  margin-bottom: 10px;
   margin-top: 10px;
+  height: 99%;
+}
+
+img{
+  margin-bottom: 8px;
 }
